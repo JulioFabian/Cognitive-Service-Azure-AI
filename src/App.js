@@ -1,5 +1,3 @@
-// ./src/App.js
-
 import React, { useState } from 'react';
 import './App.css';
 import { computerVision, isConfigured as ComputerVisionIsConfigured } from './azure-cognitiveservices-computervision';

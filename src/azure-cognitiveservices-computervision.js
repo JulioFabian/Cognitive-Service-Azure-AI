@@ -1,20 +1,14 @@
-// ./src/azure-cognitiveservices-computervision.js
-
-// Azure SDK client libraries
 import { ComputerVisionClient } from '@azure/cognitiveservices-computervision';
 import { ApiKeyCredentials } from '@azure/ms-rest-js';
 
-// List of sample images to use in demo
 import RandomImageUrl from './DefaultImages';
 
-// Authentication requirements
 const key = process.env.REACT_APP_AZURE_COMPUTER_VISION_KEY;
 const endpoint = process.env.REACT_APP_AZURE_COMPUTER_VISION_ENDPOINT;
 
 console.log(`key = ${key}`)
 console.log(`endpoint = ${endpoint}`)
 
-// Cognitive service features
 const visualFeatures = [
     "ImageType",
     "Faces",
