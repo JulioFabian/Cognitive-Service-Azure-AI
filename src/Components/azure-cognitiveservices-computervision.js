@@ -6,8 +6,8 @@ import RandomImageUrl from './DefaultImages';
 const key = process.env.REACT_APP_AZURE_COMPUTER_VISION_KEY;
 const endpoint = process.env.REACT_APP_AZURE_COMPUTER_VISION_ENDPOINT;
 
-// console.log(key);
-// console.log(endpoint);
+console.log(key);
+console.log(endpoint);
 
 const visualFeatures = [
     "ImageType",
