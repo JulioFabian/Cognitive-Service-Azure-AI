@@ -1,86 +1,97 @@
-import React, { useState } from 'react';
-import './App.css';
-import { computerVision, isConfigured as ComputerVisionIsConfigured } from './azure-cognitiveservices-computervision';
+import React, { Component } from 'react';
+import HomeAnalyse from './Views/HomeAnalise';
+import Search from './Components/Search';
+import Result from './Components/Result';
+import ModalAnalisys from './Components/ModalAnalisys';
 
-function App() {
+class App extends Component {
 
-  const [fileSelected, setFileSelected] = useState(null);
-  const [analysis, setAnalysis] = useState(null);
-  const [processing, setProcessing] = useState(false);
-  
-  const handleChange = (e) => {
-    setFileSelected(e.target.value)
+  state = {
+    term: '',
+    images: [],
+    page: 0
   }
-  const onFileUrlEntered = (e) => {
 
-    // hold UI
-    setProcessing(true);
-    setAnalysis(null);
+  scroll = () => {
+    const element = document.querySelector('.bg-dark');
+    element.scrollIntoView('smooth', 'start');
+  }
 
-    computerVision(fileSelected || null).then((item) => {
-      // reset state/form
-      setAnalysis(item);
-      setFileSelected("");
-      setProcessing(false);
+  previousPage = () => {
+    let page = this.state.page;
+
+    if (page === 1) return null
+
+    page--;
+
+    this.setState({
+      page
+    }, () => {
+      this.consultApi();
+      this.scroll();
     });
 
-  };
-
-  // Display JSON data in readable format
-  const PrettyPrintJson = (data) => {
-    return (<div><pre>{JSON.stringify(data, null, 2)}</pre></div>);
+    // console.log(page);
   }
 
-  const DisplayResults = () => {
+  nextPage = () => {
+    let page = this.state.page;
+
+    page++;
+
+    this.setState({
+      page
+    }, () => {
+      this.consultApi();
+      this.scroll();
+    });
+
+    // console.log(page);
+  }
+
+  consultApi = () => {
+    const term = this.state.term;
+    const page = this.state.page;
+    const url = `https://pixabay.com/api/?key=26571664-344025cfacbf15156ec41de31&q=${term}&per_page=30&page=${page}`;
+
+    //console.log(url);
+
+    fetch(url)
+      .then(response => response.json())
+      .then(result => this.setState({ images: result.hits }))
+  }
+
+  searchData = (term) => {
+    this.setState({
+      term: term,
+      page: 1
+    }, () => {
+      this.consultApi();
+    })
+  }
+
+  render() {
     return (
-      <div>
-        <h2>Computer Vision Analysis</h2>
-        <div><img src={analysis.URL} height="200" border="1" alt={(analysis.description && analysis.description.captions && analysis.description.captions[0].text ? analysis.description.captions[0].text : "can't find caption")} /></div>
-        {PrettyPrintJson(analysis)}
-      </div>
-    )
-  };
-  
-  const Analyze = () => {
-    return (
-    <div>
-      <h1>Analyze image</h1>
-      {!processing &&
-        <div>
-          <div>
-            <label>URL</label>
-            <input type="text" placeholder="Enter URL or leave empty for random image from collection" size="50" onChange={handleChange}></input>
-          </div>
-          <button onClick={onFileUrlEntered}>Analyze</button>
+      <div className="app container">
+        <div className="bg-dark p-5">
+          <p className="lead text-center">Search your Images</p>
+          <Search 
+            searchData = {this.searchData}
+          />
         </div>
-      }
-      {processing && <div>Processing</div>}
-      <hr />
-      {analysis && DisplayResults()}
+        <div className="column justify-content-evenly">
+          <Result 
+            images={this.state.images}
+            previousPage={this.previousPage}
+            nextPage={this.nextPage}
+          />
+        </div>
       </div>
-    )
+      // <div>
+      //   <ModalAnalisys />
+      // </div>
+    );
   }
-  
-  const CantAnalyze = () => {
-    return (
-      <div>Key and/or endpoint not configured in ./azure-cognitiveservices-computervision.js</div>
-    )
-  }
-  
-  function Render() {
-    const ready = ComputerVisionIsConfigured();
-    if (ready) {
-      return <Analyze />;
-    }
-    return <CantAnalyze />;
-  }
-
-  return (
-    <div>
-      {Render()}
-    </div>
-    
-  );
 }
 
 export default App;

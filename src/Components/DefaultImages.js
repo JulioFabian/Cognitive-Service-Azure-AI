@@ -10,7 +10,16 @@ const domainURLImage = 'https://raw.githubusercontent.com/Azure-Samples/cognitiv
 const typeURLImage = 'https://raw.githubusercontent.com/Azure-Samples/cognitive-services-python-sdk-samples/master/samples/vision/images/make_things_happen.jpg';
 
 const DefaultImages = [
-    describeURL
+    describeURL,
+    tagsURL,
+    objectURL,
+    brandURLImage,
+    facesImageURL,
+    adultURLImage,
+    domainURLImage,
+    typeURLImage,
+    printedTextSampleURL,
+    multiLingualTextURL,
 ];
 
 const RandomImageUrl = () => {
