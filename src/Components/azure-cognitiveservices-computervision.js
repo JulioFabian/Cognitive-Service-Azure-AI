@@ -23,7 +23,6 @@ const visualFeatures = [
 
 export const isConfigured = () => {
     return (key && endpoint && (key.length > 0) && (endpoint.length > 0)) ? true : false;
-    // return false;
 }
 
 const includesText = async (tags) => {
@@ -71,7 +70,7 @@ const readTextFromURL = async (client, url) => {
     let result = await client.read(url);
     let operationID = result.operationLocation.split('/').slice(-1)[0];
 
-    const start = Date.now();
+    // const start = Date.now();
     // console.log(`${start} -${result?.status} `);
     
     while (result.status !== "succeeded") {

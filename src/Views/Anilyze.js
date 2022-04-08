@@ -19,16 +19,16 @@ function Analyze(props) {
 
   const printMultiplerOptions = (data, opt) =>
     data.length > 0 ?
-        data.map((categorie) => {
+        data.map((categorie, indx) => {
             return (
-                <p>&emsp;{"- " + opt(categorie)}</p>
+                <p key={indx}>&emsp;{"- " + opt(categorie)}</p>
             )
     }) : <p>&emsp;- not found </p>
 
 const printSingleOption = (title, opt) =>
     <>
         <h5>&emsp;{title} :</h5>
-        {opt != "" ? <p>&emsp;&emsp;{"- " + opt}</p>: <p>&emsp;- not found</p>}
+        {opt !== "" ? <p>&emsp;&emsp;{"- " + opt}</p>: <p>&emsp;- not found</p>}
     </>
 
   const PrettyPrintJson = (data) => {
@@ -69,9 +69,9 @@ const printSingleOption = (title, opt) =>
             <hr />
             <h4><b>Tags:</b> </h4>
             {data.description.tags.length > 0 ?
-                data.description.tags.map(tag => {
+                data.description.tags.map((tag, indx) => {
                     return(
-                        <p>&emsp;{"- " + tag}</p>
+                        <p key={indx}>&emsp;{"- " + tag}</p>
                     )
                 }) : <p>&emsp;- not found </p>}
             <hr />
@@ -79,22 +79,21 @@ const printSingleOption = (title, opt) =>
             {data.faces.length > 0 ?
                 data.faces.map((face, indx) => {
                     return(
-                        <>
+                        <div key={indx}>
                             <h5>&emsp;Face {indx+1}: </h5>
                             <p>&emsp;&emsp;{"- Age: " + face.age}</p>
                             <p>&emsp;&emsp;{"- Gender:  " + face.gender}</p>
-                        </>
+                        </div>
                     )
                 }) : <p>&emsp;- not found </p>}
             <hr />
             <h4><b>Text:</b> </h4>
             {data.text.readResults[0].lines.length > 0 ?
                 data.text.readResults[0].lines.map((line, indx) => {
-                    {indx++}
                     return(
-                        <>
-                            <p>&emsp;{"- Line " + indx + ": "}"{line.text}"</p>
-                        </>
+                        <div key={indx}>
+                            <p>&emsp;{"- Line "} {indx+1} : "{line.text}"</p>
+                        </div>
                     )
                 }) : <p>&emsp;- not found </p>}
             <hr />

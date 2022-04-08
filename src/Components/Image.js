@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ModalAnalisys from "./ModalAnalisys";
-import HomeAnalyse from "../Views/HomeAnalise";
 import ImageInfo from "./ImageInfo";
 
 const Image = (props) => {

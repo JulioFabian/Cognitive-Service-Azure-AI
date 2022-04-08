@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import HomeAnalyse from './Views/HomeAnalise';
 import Search from './Components/Search';
 import Result from './Components/Result';
-import ModalAnalisys from './Components/ModalAnalisys';
 
 class App extends Component {
 
