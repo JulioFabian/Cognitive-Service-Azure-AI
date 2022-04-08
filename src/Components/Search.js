@@ -19,7 +19,7 @@ class Search extends Component {
                             ref={this.searchRef}
                             type="text"
                             className="form-control form-control-lg"
-                            placeholder="Search your Image. Example: Futbol"
+                            placeholder="Search your Image. Example: Futboll"
                         />
                     </div>
                     <div className="form-group col-md-4 d-grid">

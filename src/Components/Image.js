@@ -22,25 +22,13 @@ const Image = (props) => {
                 <img src={previewURL} alt={tags} className="card-img-top"/>
                 <p className="m-2 card-text">{likes} Likes </p>
                 <p className="p-2 card-text">{views} views </p>
-
-                {/* <a 
-                    href={largeImageURL} 
-                    target="_blank" 
-                    className="btn btn-primary btn-block"
-                >
-                    See Image 
-                </a> */}
                 <ImageInfo
-                    href={largeImageURL} 
-                    target={largeImageURL}
+                    imageUrl={largeImageURL}
                     handleImageUrl={handleImageUrl}
                 />
             </div>
             <ModalAnalisys isOpen={modalProps} onClose={closeModal} imageUrl={imageUrl}/>
         </div>
-        // <div>
-        //     <ModalAnalisys />
-        // </div>
     )
 }
 

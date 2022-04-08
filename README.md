@@ -15,21 +15,14 @@ products:
 
 # Build and deploy a Static Web app to Azure
 
-In this tutorial, locally build and deploy a React/TypeScript client application to an Azure Static Web App with a GitHub action. 
-
-* [Read Tutorial](https://docs.microsoft.com/azure/developer/javascript/tutorial/static-web-app/introduction)
-* Create Azure resources
-    * [Static web app](https://docs.microsoft.com/azure/static-web-apps)
-    * [Cognitive Services' Computer Vision](https://docs.microsoft.com/azure/cognitive-services/computer-vision/)
-
-![](https://docs.microsoft.com/azure/developer/javascript/media/static-web-app/browser-screenshot-react-computervision-app-image-analysis-result.png)
+* 
 
 ## Features
 
 The React (create-react-app) provides the following functionality: 
 * Display message if Azure key and endpoint for Cognitive Services Computer Vision isn't found
 * Allows you to analyze an image with Cognitive Services Computer Vision
-    * Enter a public image URL or analyze image from collection
+    * Enter a key word to get diferent images
     * When analysis is complete
         * Display image
         * Display Computer Vision JSON results 

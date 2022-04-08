@@ -78,6 +78,7 @@ class App extends Component {
           />
         </div>
         <div className="column justify-content-evenly">
+          
           <Result 
             images={this.state.images}
             previousPage={this.previousPage}
@@ -85,9 +86,6 @@ class App extends Component {
           />
         </div>
       </div>
-      // <div>
-      //   <ModalAnalisys />
-      // </div>
     );
   }
 }
